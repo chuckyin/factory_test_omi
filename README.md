@@ -6,13 +6,13 @@ The factory test framework with optical module integrator mode
 Open-source framework focused on hardware automation station fast bring-up at component vendor: open, object-orientated and lightweight
 
 ## Overview
-OpenExec is a python multitier framework  to bring up the test station at component vendor for Oculus hardware product, such as display vendors, lens vendors, camera vendors, sensor vendors, etc. Considering the device under test is not Oculus product, we relieve the restrictions for securities unless we introduce Oculus algorithm. The following principles for this framework applies
+factory_test_omi is a python multitier framework  to bring up the test station at component vendor for Oculus hardware product, such as display vendors, lens vendors, camera vendors, sensor vendors, etc. Considering the device under test is not Oculus product, we relieve the restrictions for securities unless we introduce Oculus algorithm. The following principles for this framework applies
 
 (1) Open: open to vendor to maintain the code base reduce the sustain support efforts and save the cost. \
 (2) Object-orientated: Any component attributes/properties/methods will be strictly restricted \
 (3) Lightweight: To make the framework maintainable, pylint will be strongly recommended to run code quality before implementation.
 
-In the openexec, the OOP principle is applied to every physical and virtual component. Fixture, DUT, station, even the test_log, GUI is all standalone class which can be instantiated to object. The infrastructure to be used for all stations are factory_test_common. 
+In the factory_test_omi, the OOP principle is applied to every physical and virtual component. Fixture, DUT, station, even the test_log, GUI is all standalone class which can be instantiated to object. The infrastructure to be used for all stations are factory_test_common. 
 
 ## Features
 (1) Encapsulation: Hide values or state inside class, preventing unauthorized parties's direct access. \
@@ -51,9 +51,9 @@ The customized hardware to bind DUT/Equipment, with functions. Examples: Myzy bl
 Station = DUT + Fixture + Equipment
 
 ## Installation:
-OpenExec can be run by external python; however, setting up a virtual environment to maintain a clean environment is recommended. If the dependencies are not installed yet, please install the dependencies:
+factory_test_omi can be run by external python; however, setting up a virtual environment to maintain a clean environment is recommended. If the dependencies are not installed yet, please install the dependencies:
 ```sh
-cd OpenExec
+cd factory_test_omi
 .\env\Scripts\activate
 pip install -r requirements.txt
 ```
