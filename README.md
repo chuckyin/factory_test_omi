@@ -6,11 +6,8 @@ The factory test framework with optical module integrator mode
 Open-source framework focused on hardware automation station fast bring-up at optical module integrator (OMI for short): open, object-orientated and lightweight
 
 ## Overview
-<<<<<<< HEAD
-factory_test_omi is a python multitier framework  to bring up the test station at component vendor for Oculus hardware product, such as display vendors, lens vendors, camera vendors, sensor vendors, etc. Considering the device under test is not Oculus product, we relieve the restrictions for securities unless we introduce Oculus algorithm. The following principles for this framework applies
-=======
+
 Factory_test_omi is a python multitier framework  to bring up the test station at component vendor for Oculus hardware product, such as display vendors, lens vendors, camera vendors, sensor vendors, etc. Considering the device under test is not Oculus product, we relieve the restrictions for securities unless we introduce Oculus algorithm. The following principles for this framework applies
->>>>>>> 217b695f097aeccf32f39424b06900a8826a3957
 
 (1) Open: open to vendor to maintain the code base reduce the sustain support efforts and save the cost. \
 (2) Object-orientated: Any component attributes/properties/methods will be strictly restricted \
