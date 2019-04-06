@@ -13,6 +13,13 @@ class DUTError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class projectUnit(factory_test_common.test_station.uut.Unit):
+    def __init__(self, serialNumber, station_config, operatorInterface):
+        factory_test_common.test_station.uut.Unit.__init__(self, serialNumber, station_config, operatorInterface)
+        self._display_server = None
+        self.first_boot = True
+        
+        
 class DUT(factory_test_common.test_station.uut.Unit):
     def __init__(self, serialNumber, station_config, operatorInterface):
         factory_test_common.test_station.uut.Unit.__init__(self, serialNumber, station_config, operatorInterface)
