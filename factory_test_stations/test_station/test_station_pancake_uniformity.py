@@ -1,27 +1,27 @@
-import test_station.uut as uut
 import factory_test_common.test_station.test_station as test_station
-import test_station.test_fixture.test_fixture_project_station as test_fixture_project_station
+import test_station.test_fixture.test_fixture_pancake_uniformity as test_fixture_pancake_uniformity
+import test_station.dut as dut
 
 
-class projectstationError(Exception):
+class pancakeuniformityError(Exception):
     pass
 
 
-class projectstationStation(test_station.TestStation):
+class pancakeuniformityStation(test_station.TestStation):
     """
-        projectstation Station
+        pancakeuniformity Station
     """
 
     def __init__(self, station_config, operator_interface):
         test_station.TestStation.__init__(self, station_config, operator_interface)
-        self._fixture = test_fixture_project_station.projectstationFixture(station_config, operator_interface)
+        self._fixture = test_fixture_pancake_uniformity.pancakeuniformityFixture(station_config, operator_interface)
         self._overall_errorcode = ''
         self._first_failed_test_result = None
 
 
     def initialize(self):
         try:
-            self._operator_interface.print_to_console("Initializing project station station...\n")
+            self._operator_interface.print_to_console("Initializing pancake uniformity station...\n")
             self._fixture.initialize()
         except:
             raise
@@ -35,7 +35,7 @@ class projectstationStation(test_station.TestStation):
         self._overall_result = False
         self._overall_errorcode = ''
 
-        the_unit = uut.projectUnit(serial_number, self._station_config, self._operator_interface)
+        the_unit = dut.pancakeuniformityDut(serial_number, self._station_config, self._operator_interface)
         self._operator_interface.print_to_console("Testing Unit %s\n" % the_unit.serial_number)
         try:
 
@@ -43,13 +43,8 @@ class projectstationStation(test_station.TestStation):
             a_result = 2
             test_log.set_measured_value_by_name("TEST ITEM", a_result)
 
-        except projectstationError:
+        except pancakeuniformityError:
             self._operator_interface.print_to_console("Non-parametric Test Failure\n")
-            return self.close_test(test_log)
-
-        ### Handle other exceptions, recover if it's a case you handle. ###
-        except uut.FactoryRegisterExecutionError:
-            self._operator_interface.print_to_console("Factory Register Failure\n")
             return self.close_test(test_log)
 
         else:
