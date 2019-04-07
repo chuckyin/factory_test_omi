@@ -49,15 +49,11 @@ class pancakeuniformityStation(test_station.TestStation):
 	    a_result = 1.4
 	    self._operator_interface.wait(a_result, "\n***********Testing Item 2 ***************\n")
             test_log.set_measured_value_by_name("TEST ITEM 2", a_result)
-						self._operator_interface.print_to_console("Log the test item 2 value %f\n" %a_result)
+	    self._operator_interface.print_to_console("Log the test item 2 value %f\n" %a_result)
   	    
-	    self._operator_interface.print_to_console("Log the test item 2 value %f" %a_result)
-	    
 	    a_result = 1.8
 	    self._operator_interface.wait(a_result, "\n***********Testing Item 3 ***************\n")
 	    test_log.set_measured_value_by_name("TEST ITEM 3", a_result)
-						self._operator_interface.print_to_console("Log the test item 3 value %f\n" %a_result)
-
 	    self._operator_interface.print_to_console("Log the test item 3 value %f\n" %a_result)
 
         except pancakeuniformityError:
