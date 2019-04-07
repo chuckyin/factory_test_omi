@@ -1,8 +1,8 @@
-CURRENT_FW_VERSION = 1001
 
 STATION_LIMITS_ARRAYS = [
-    ["TEST ITEM", 1, 5, 10],
-    ["Verify Firmware Load", CURRENT_FW_VERSION, CURRENT_FW_VERSION, 11],
+    ["TEST ITEM 1", 1, 2, 11],
+    ["TEST ITEM 2", 1, 2, 12],
+    ["TEST ITEM 3", 1, 2, 13],
 ]
 
 global STATION_LIMITS

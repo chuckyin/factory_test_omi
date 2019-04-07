@@ -4,7 +4,7 @@
 # Where is the root directory.
 # 'factory-test' directory, logs directories, etc will get placed in there.
 # (use windows-style paths.)
-ROOT_DIR = r'C:\Oculus'
+ROOT_DIR = r'C:\projects\Pancake\factory_test_omi'
 
 ##################################
 # serial number codes
@@ -16,7 +16,7 @@ SERIAL_NUMBER_MODEL_NUMBER = 'H'  # Fake model number requirement, need config
 ##################################
 # shopfloor
 #
-SHOPFLOOR_SYSTEM = 'Foxlink'
+SHOPFLOOR_SYSTEM = 'Sunny'
 # Will we be enforcing shopfloor routing?
 ENFORCE_SHOPFLOOR_ROUTING = False
 # does the shopfloor use work orders?
