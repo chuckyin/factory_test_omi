@@ -1,6 +1,6 @@
 import test_station
 import station_config
-import factory_test_common.factory_test_gui as gui
+import hardware_station_common.factory_test_gui as gui
 
 # here we can override the station_config so that we don't have
 # to monkey with it in the build system

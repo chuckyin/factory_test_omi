@@ -1,13 +1,13 @@
-import factory_test_common.test_station.test_equipment
+import hardware_station_common.test_station.test_equipment
 
 
-class pancakeuniformityFixture(factory_test_common.test_station.test_equipment.TestEquipment):
+class pancakeuniformityFixture(hardware_station_common.test_station.test_equipment.TestEquipment):
     """
         class for pancake uniformity Equipment
             this is for doing all the specific things necessary to interface with equipment
     """
     def __init__(self, station_config, operator_interface):
-        factory_test_common.test_station.test_equipment.TestEquipment.__init__(self, station_config, operator_interface)
+        hardware_station_common.test_station.test_equipment.TestEquipment.__init__(self, station_config, operator_interface)
 
     def is_ready(self):
         pass

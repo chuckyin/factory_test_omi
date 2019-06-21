@@ -13,7 +13,7 @@ Factory_test_omi is a python multitier framework  to bring up the test station a
 (2) Object-orientated: Any component attributes/properties/methods will be strictly restricted \
 (3) Lightweight: To make the framework maintainable, pylint will be strongly recommended to run code quality before implementation.
 
-In the factory_test_omi, the OOP principle is applied to every physical and virtual component. Fixture, DUT, station, even the test_log, GUI is all standalone class which can be instantiated to object. The infrastructure to be used for all stations are factory_test_common. 
+In the factory_test_omi, the OOP principle is applied to every physical and virtual component. Fixture, DUT, station, even the test_log, GUI is all standalone class which can be instantiated to object. The infrastructure to be used for all stations are hardware_station_common. 
 
 ## Features
 (1) Encapsulation: Hide values or state inside class, preventing unauthorized parties's direct access. \
@@ -22,19 +22,19 @@ In the factory_test_omi, the OOP principle is applied to every physical and virt
 (4) config/limit separation: Limit is to used to judge pass/fail. The config is used to load station specific parameters. They are located under one folder following the nomenclature of `station_config_PROJECT_STATION.py` and `station_limits_PROJECT_STATION.py`. \
 (5) Generating a new station under administrator terminal use one line of code under the factory_test_stations directory by
 ```sh
-bash factory_test_common\new-station PROJECT_NAME STATION_NAME
+bash hardware_station_common\new-station PROJECT_NAME STATION_NAME
 ```
 For example, generate a new lens-contrast station for Monterey will be
 ```sh
-bash factory_test_common\new-station Monterey lens-contrast
+bash hardware_station_common\new-station Monterey lens-contrast
 ```
 (6) Deleting a station under administrator terminal use one line of code under the factory_test_stations directory by
 ```sh
-bash factory_test_common\delete-station PROJECT_NAME STATION_NAME
+bash hardware_station_common\delete-station PROJECT_NAME STATION_NAME
 ```
 For example, delete the just created len-contrast station for Monterey will be 
 ```sh
-bash factory_test_common\delete-station Monterey lens-contrast
+bash hardware_station_common\delete-station Monterey lens-contrast
 ```
 
 
