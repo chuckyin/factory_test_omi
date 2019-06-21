@@ -1,3 +1,0 @@
-[submodule "factory_test_stations/factory_test_common"]
-	path = factory_test_stations/factory_test_common
-	url = git@github.com:chuckyin/factory_test_common.git
