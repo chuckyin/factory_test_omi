@@ -1,7 +1,7 @@
 import hardware_station_common.test_station.dut
 
 
-class pancakeuniformityDut(hardware_station_common.test_station.dut.DUT):
+class pancakeDut(hardware_station_common.test_station.dut.DUT):
     """
         class for pancake uniformity DUT
             this is for doing all the specific things necessary to DUT

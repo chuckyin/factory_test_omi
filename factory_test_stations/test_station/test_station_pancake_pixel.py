@@ -1,27 +1,27 @@
 import hardware_station_common.test_station.test_station as test_station
-import test_station.test_fixture.test_fixture_pancake_uniformity as test_fixture_pancake_uniformity
+import test_station.test_fixture.test_fixture_pancake_pixel as test_fixture_pancake_pixel
 import test_station.dut as dut
 
 
-class pancakeuniformityError(Exception):
+class pancakepixelError(Exception):
     pass
 
 
-class pancakeuniformityStation(test_station.TestStation):
+class pancakepixelStation(test_station.TestStation):
     """
-        pancakeuniformity Station
+        pancakepixel Station
     """
 
     def __init__(self, station_config, operator_interface):
         test_station.TestStation.__init__(self, station_config, operator_interface)
-        self._fixture = test_fixture_pancake_uniformity.pancakeuniformityFixture(station_config, operator_interface)
+        self._fixture = test_fixture_pancake_pixel.pancakepixelFixture(station_config, operator_interface)
         self._overall_errorcode = ''
         self._first_failed_test_resulta = None
 
 
     def initialize(self):
         try:
-            self._operator_interface.print_to_console("Initializing pancake uniformity station...\n")
+            self._operator_interface.print_to_console("Initializing pancake pixel station...\n")
             self._fixture.initialize()
         except:
             raise
@@ -35,7 +35,7 @@ class pancakeuniformityStation(test_station.TestStation):
         self._overall_result = False
         self._overall_errorcode = ''
 
-        the_unit = dut.pancakeDut(serial_number, self._station_config, self._operator_interface)
+        the_unit = dut.pancakepixelDut(serial_number, self._station_config, self._operator_interface)
         self._operator_interface.print_to_console("Testing Unit %s\n" % the_unit.serial_number)
         try:
 
@@ -56,7 +56,7 @@ class pancakeuniformityStation(test_station.TestStation):
 	    test_log.set_measured_value_by_name("TEST ITEM 3", a_result)
 	    self._operator_interface.print_to_console("Log the test item 3 value %f\n" %a_result)
 
-        except pancakeuniformityError:
+        except pancakepixelError:
             self._operator_interface.print_to_console("Non-parametric Test Failure\n")
             return self.close_test(test_log)
 
