@@ -17,6 +17,25 @@ SERIAL_NUMBER_MODEL_NUMBER = 'HC3'  # AUO panel SN
 # Fixture parameters
 # Fixture commands
 FIXTURE_COMPORT = "COM3" #
+DUT_COMPORT = "COM7" #
+
+COMMAND_DISP_HELP = "$help"
+COMMAND_DISP_VERSION_GRP=['mcu','hw','fpga']
+COMMAND_DISP_VERSION = "Version"
+COMMAND_DISP_GETBOARDID = "getBoardID"
+COMMAND_DISP_POWERON = "DUT.powerOn,SSD2832_BistMode"
+COMMAND_DISP_POWEROFF = "DUT.powerOff"
+COMMAND_DISP_RESET = "Reset"
+COMMAND_DISP_SETCOLOR = "SetColor"
+COMMAND_DISP_SHOWIMAGE = "ShowImage"
+COMMAND_DISP_READ = "MIPI.Read"
+COMMAND_DISP_WRITE = "MIPI.Write"
+COMMAND_DISP_2832WRITE = "t.2832_MIPI_WRITE"
+
+COMMAND_DISP_POWERON_DLY = 1.5
+COMMAND_DISP_RESET_DLY = 1
+COMMAND_DISP_SHOWIMG_DLY = 1
+COMMAND_DISP_POWEROFF_DLY = 0.2
 
 COMMAND_FIXTURE_INFO = "CMD_FIXTURE_INFORMATION\r\n"
 COMMAND_HELP = "CMD_HELP\r\n"
@@ -77,16 +96,17 @@ SEQUENCE_RELATIVEPATH = r'test_station\test_equipment\algorithm\uniformity.seqx'
 CALIBRATION_RELATIVEPATH = r'test_station\test_equipment\calibration'
 DATABASE_RELATIVEPATH = r'factory-test_logs\oculus.ttxm'
 EMPTY_DATABASE_RELATIVEPATH = r'factory-test_logs\empty.ttxm'
+DATABASE_RELATIVEPATH_BAK = r'factory-test_logs'
 ANALYSIS_RELATIVEPATH = r'factory-test_logs'
 
-FOCUS_DISTANCE = 0.55
+FOCUS_DISTANCE = 0.45
 APERTURE = 8.0
 ROTATION = 0
 IS_AUTOEXPOSURE = False
-LEFT = 1847
-TOP = 997
-WIDTH = 1120
-HEIGHT = 1204
+LEFT = 1764
+TOP = 928
+WIDTH = 1337
+HEIGHT = 1400
 IS_SAVEDB = True
 
 
@@ -94,11 +114,12 @@ SPECTRAL_RESPONSE = 'PhotoMetric'
 DISTANCE_UNIT = "Millimeters"
 CAMERA_SN = "159486608"
 COLOR_CAL = 'camera_color_cal'
-SCALE_CAL = 'image_scale_cal'
+SCALE_CAL = 'image_scale_cal1'
 SHIFT_CAL = '159486608 Color Shift Correction'
 PATTERNS =  ["W255", "W180", 'W127', 'W090', "R255", "G255", "B255"]
 SAVE_IMAGES = [False, False, False, False, False, False, False, False]
 COLORS = [(255,255,255), (180, 180, 180), (127,127,127), (90,90,90), (255,0,0), (0,255,0), (0,0,255)]
+#COLORS = ['0008', '0001', '0800', '8000', '0010', '0020', '0040']
 ANALYSIS = ["UniformityRegister", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure", "UniformityMeasure"]
 EXPOSURE = [[125,125,125], [250,250,250],[375,375,375],[500,500,500],[250,250,500],[125,125,125],[250,250,250]]
 

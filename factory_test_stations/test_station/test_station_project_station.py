@@ -40,21 +40,21 @@ class projectstationStation(test_station.TestStation):
         try:
 
             ### implement tests here.  Note that the test name matches one in the station_limits file ###
-	    a_result = 1.1
-	    self._operator_interface.wait(a_result, "\n***********Testing Item 1 ***************\n")
+            a_result = 1.1
+            self._operator_interface.wait(a_result, "\n***********Testing Item 1 ***************\n")
 
             test_log.set_measured_value_by_name("TEST ITEM 1", a_result)
-	    self._operator_interface.print_to_console("Log the test item 1 value %f\n" %a_result)
-	    
-	    a_result = 1.4
-	    self._operator_interface.wait(a_result, "\n***********Testing Item 2 ***************\n")
+            self._operator_interface.print_to_console("Log the test item 1 value %f\n" % a_result)
+
+            a_result = 1.4
+            self._operator_interface.wait(a_result, "\n***********Testing Item 2 ***************\n")
             test_log.set_measured_value_by_name("TEST ITEM 2", a_result)
-	    self._operator_interface.print_to_console("Log the test item 2 value %f\n" %a_result)
-  	    
-	    a_result = 1.8
-	    self._operator_interface.wait(a_result, "\n***********Testing Item 3 ***************\n")
-	    test_log.set_measured_value_by_name("TEST ITEM 3", a_result)
-	    self._operator_interface.print_to_console("Log the test item 3 value %f\n" %a_result)
+            self._operator_interface.print_to_console("Log the test item 2 value %f\n" % a_result)
+
+            a_result = 1.8
+            self._operator_interface.wait(a_result, "\n***********Testing Item 3 ***************\n")
+            test_log.set_measured_value_by_name("TEST ITEM 3", a_result)
+            self._operator_interface.print_to_console("Log the test item 3 value %f\n" % a_result)
 
         except projectstationError:
             self._operator_interface.print_to_console("Non-parametric Test Failure\n")

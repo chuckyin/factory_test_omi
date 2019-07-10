@@ -1,7 +1,8 @@
 import hardware_station_common.test_station.dut
 import os
 import time
-from test_station.dut.displayserver import DisplayServer
+# from test_station.dut.displayserver import DisplayServer
+from displayCtrl import displayCtrlBoard
 
 class DUTError(Exception):
     def __init__(self, value):
@@ -15,13 +16,12 @@ class pancakeDut(hardware_station_common.test_station.dut.DUT):
     def __init__(self, serialNumber, station_config, operatorInterface):
         hardware_station_common.test_station.dut.DUT.__init__(self, serialNumber, station_config, operatorInterface)
         self._display_server = None
-        self._adb_path = os.path.join(self._station_config.ROOT_DIR, self._station_config.CUSTOM_ADB_RELATIVE_PATH)
         self.first_boot = True
 
     def initialize(self):
-        self._display_server = DisplayServer(custom_adb_path=self._adb_path)
+        self._display_server = displayCtrlBoard(self._station_config, self._operator_interface) # DisplayServer(custom_adb_path=self._adb_path)
+        self._display_server.initialize()
         isinit = self.ptb_booted() and bool(self.ptb_detected()) and bool(self._display_server)#        self._display_server.kill_server()
-
         return isinit
 
     def connect_display(self, display_cycle_time=2, launch_time=4):
@@ -81,11 +81,11 @@ class pancakeDut(hardware_station_common.test_station.dut.DUT):
         self._display_server.display_image(image)
         time.sleep(self._station_config.DUT_DISPLAYSLEEPTIME)
 
+    def vsync_microseconds(self):
+        return self._station_config.DEFAULT_VSYNC_US
+    '''
     def load_fragment_shader(self, shadername='frag.glsl'):
         self._display_server.load_fragment_shader(shadername)
-
-    def vsync_microseconds(self):
-        return self._display_server.get_median_vsync_microseconds()
 
     def send_data_as_file(self, data, remote_filename):
         self._display_server.send_data_as_file(data, remote_filename)
@@ -96,7 +96,7 @@ class pancakeDut(hardware_station_common.test_station.dut.DUT):
     def screen_off(self):
         if self._display_server != None and self._display_server.is_connected():
             self._display_server.screen_off()
-
+    '''
     def ptb_detected(self):
         return len(self._display_server.list_devices())
 
@@ -126,10 +126,8 @@ class projectDut(hardware_station_common.test_station.dut.DUT):
 
     def close(self):
         self._operator_interface.print_to_console("Closing pancake uniformity Fixture\n")
-		
-		
-if __name__ == "__main__":
-    SN = "1HC30000000000"
+
+if __name__ == "__main__" :
     the_unit = pancakeDut("1HC30000000000")
     the_unit.initialize()
     print the_unit.ptb_detected()
