@@ -280,3 +280,23 @@ class pancakeuniformityFixture(hardware_station_common.test_station.test_fixture
             self._read_error = "True"
             raise pancakeuniformityFixtureError("Fail to Read %s" % response[0])
         return value
+
+if __name__ == "__main__":
+        sys.path.append("../../")
+        import dutTestUtil
+        import station_config
+        import hardware_station_common.operator_interface.operator_interface
+
+        print 'Self check for pancake_uniformity'
+        station_config.load_station('pancake_uniformity')
+        operator = dutTestUtil.simOperator()
+        the_fixture = pancakeuniformityFixture(station_config, operator)
+
+        the_fixture.initialize()
+        the_fixture.reset()
+
+        the_fixture.unload()
+        time.sleep(1)
+        the_fixture.load()
+
+        the_fixture.close()

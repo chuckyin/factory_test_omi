@@ -4,7 +4,7 @@
 # Where is the root directory.
 # 'factory-test' directory, logs directories, etc will get placed in there.
 # (use windows-style paths.)
-ROOT_DIR = r'C:\oculus\factory_test_omi'
+ROOT_DIR = r'C:\oculus\factory_test_omi\factory_test_stations'
 
 ##################################
 # serial number codes
@@ -15,7 +15,26 @@ SERIAL_NUMBER_MODEL_NUMBER = 'H'  # Fake model number requirement, need config
 ##################################
 # Fixture parameters
 # Fixture commands
-FIXTURE_COMPORT = "COM6" #
+FIXTURE_COMPORT = "COM10" #
+DUT_COMPORT = "COM9" #
+
+COMMAND_DISP_HELP = "$help"
+COMMAND_DISP_VERSION_GRP=['mcu','hw','fpga']
+COMMAND_DISP_VERSION = "Version"
+COMMAND_DISP_GETBOARDID = "getBoardID"
+COMMAND_DISP_POWERON = "DUT.powerOn,SSD2832_BistMode"
+COMMAND_DISP_POWEROFF = "DUT.powerOff"
+COMMAND_DISP_RESET = "Reset"
+COMMAND_DISP_SETCOLOR = "SetColor"
+COMMAND_DISP_SHOWIMAGE = "ShowImage"
+COMMAND_DISP_READ = "MIPI.Read"
+COMMAND_DISP_WRITE = "MIPI.Write"
+COMMAND_DISP_2832WRITE = "t.2832_MIPI_WRITE"
+
+COMMAND_DISP_POWERON_DLY = 1.5
+COMMAND_DISP_RESET_DLY = 1
+COMMAND_DISP_SHOWIMG_DLY = 1
+COMMAND_DISP_POWEROFF_DLY = 0.2
 
 COMMAND_FIXTURE_INFO = "CMD_FIXTURE_INFORMATION\r\n"
 COMMAND_HELP = "CMD_HELP\r\n"
@@ -61,23 +80,61 @@ FIXTURE_USB_ON_TIME = 1
 ##################################
 # shopfloor
 #
-SHOPFLOOR_SYSTEM = 'Sunny'
+SHOPFLOOR_SYSTEM = 'Genius'
 # Will we be enforcing shopfloor routing?
 ENFORCE_SHOPFLOOR_ROUTING = False
 # does the shopfloor use work orders?
-USE_WORKORDER_ENTRY = True
+#USE_WORKORDER_ENTRY = True
+
+######## DUT Related Parameters which will be defined
+DUT_ON_TIME = 4  ## assuming DUT need 5 seconds to be powered after USB powered on command
+DUT_DISPLAYSLEEPTIME = 1
+DISPLAY_CYCLE_TIME = 2
+LAUNCH_TIME = 4
+DUT_MAX_WAIT_TIME =60
+DEFAULT_VSYNC_US = 111.44646
 
 ##################################
-# station hardware
+# Test Equipment related parameters
+IS_VERBOSE = True
+MPKAPI_RELATIVEPATH = r'test_station\test_equipment\MPK_API.dll'
+SEQUENCE_RELATIVEPATH = r'test_station\test_equipment\algorithm\pixel.seqx'
+CALIBRATION_RELATIVEPATH = r'test_station\test_equipment\calibration'
+DATABASE_RELATIVEPATH = r'factory-test_logs\oculus.ttxm'
+EMPTY_DATABASE_RELATIVEPATH = r'factory-test_logs\empty.ttxm'
+ANALYSIS_RELATIVEPATH = r'factory-test_logs'
+DATABASE_RELATIVEPATH_BAK = r'factory-test_logs'
+
+FOCUS_DISTANCE = 0.425
+APERTURE = 8.0
+ROTATION = 90
+IS_AUTOEXPOSURE = False
+LEFT = 501
+TOP = 1272
+WIDTH = 3703
+HEIGHT = 4012
+IS_SAVEDB = True
+
+
+SPECTRAL_RESPONSE = 'PhotoMetric'
+DISTANCE_UNIT = "Millimeters"
+CAMERA_SN = "91738177"
+COLOR_CAL = 'camera_color_cal1'
+SCALE_CAL = 'image_scale_cal1'
+SHIFT_CAL = '(None)'
+
+PATTERNS =  ["W255","W000"]
+SAVE_IMAGES = [True,True]
+COLORS = [(255,255,255),(0,0,0)]
+# COLORS = ['0008','0000']
+ANALYSIS = ["PanelCheck","PanelCheck"]
+EXPOSURE = [[40,40,40],[800,800,800]]
+
+
+
+##################################
+# IT and work order
 #
-# visa instruments.  Hint: use Agilent VISA tools to make aliases!
-# (e.g. "DMM" vs "USB0::2391::1543::MY47007422::0::INSTR")
-######## To be config per station type 
-
-
-#####
-### Facebook_IT Enable boolean
 FACEBOOK_IT_ENABLED = False
-
 # does the shopfloor use work orders?
 USE_WORKORDER_ENTRY = False

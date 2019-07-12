@@ -20,7 +20,7 @@ SHOPFLOOR_SYSTEM = 'Sunny'
 # Will we be enforcing shopfloor routing?
 ENFORCE_SHOPFLOOR_ROUTING = False
 # does the shopfloor use work orders?
-USE_WORKORDER_ENTRY = True
+# USE_WORKORDER_ENTRY = True
 
 ##################################
 # station hardware
