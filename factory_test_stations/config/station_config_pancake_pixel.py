@@ -65,6 +65,8 @@ COMMAND_TRAY_DOWN = "CMD_TRAY_DOWN\r\n"
 COMMAND_TRAY_UP = "CMD_TRAY_UP\r\n"
 COMMAND_BUTTON_LIGHT_ON = "CMD_BUTTON_LIGHT_ON\r\n"
 COMMAND_BUTTON_LIGHT_OFF = "CMD_BUTTON_LIGHT_OFF\r\n"
+COMMAND_ELIMINATOR_ON = "CMD_ELIMINATOR_ON\r\n"
+COMMAND_ELIMINATOR_OFF = "CMD_ELIMINATOR_OFF\r\n"
 
 # Fixture Status Enum Values
 PTB_POSITION_STATUS = ["Testing Position", "Reset Position", "Outside Position", "Other Position"]
@@ -91,8 +93,9 @@ DUT_ON_TIME = 4  ## assuming DUT need 5 seconds to be powered after USB powered 
 DUT_DISPLAYSLEEPTIME = 1
 DISPLAY_CYCLE_TIME = 2
 LAUNCH_TIME = 4
-DUT_MAX_WAIT_TIME =60
-DEFAULT_VSYNC_US = 111.44646
+DUT_MAX_WAIT_TIME = 60
+DEFAULT_VSYNC_US = 13.8889  # 72  # 111.44646
+DUT_ON_MAXRETRY = 10
 
 ##################################
 # Test Equipment related parameters

@@ -149,13 +149,13 @@ if __name__ == "__main__" :
     the_unit.screen_off()
     time.sleep(5)
     print "Disconnecting display"
-    the_unit.disconnect_display()ception):
-    def __init__(self, value):
-        Exception.__init__(self)
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
+    the_unit.disconnect_display()#ception):
+    # def __init__(self, value):
+    #     Exception.__init__(self)
+    #     self.value = value
+    #
+    # def __str__(self):
+    #     return repr(self.value)
 
 class DUT():
     def __init__(self, serialNumber):

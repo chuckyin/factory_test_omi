@@ -48,6 +48,7 @@ class pancakepixelStation(test_station.TestStation):
         self._overall_result = False
         self._overall_errorcode = ''
         #        self._operator_interface.operator_input("Manually Loading", "Please Load %s for testing.\n" % serial_number)
+        self._fixture.elminator_on()
         self._fixture.load()
 
         try:
@@ -151,6 +152,7 @@ class pancakepixelStation(test_station.TestStation):
             self._operator_interface.print_to_console("Test exception . {}".format(e))
 
         self._fixture.unload()
+        self._fixture.elminator_off()
         overall_result, first_failed_test_result = self.close_test(test_log)
 
         # SN-YYMMDDHHMMS-P.ttxm for pass unit and  SN-YYMMDDHHMMS-F.ttxm for failed
