@@ -83,6 +83,10 @@ class pancakepixelEquipment(hardware_station_common.test_station.test_equipment.
             print(init_result)
         return init_result
 
+    def uninit(self):
+        response = self._device.CloseCommunication()
+        return int(self._parse_result(response))
+
     #####################################################################################################
     ######### Measurement Setup ##################
     # CreateMeasurementSetup(patternName as String, redEFilterxposure as Single, greenFilterExposure as Single,

@@ -105,8 +105,8 @@ SEQUENCE_RELATIVEPATH = r'test_station\test_equipment\algorithm\pixel.seqx'
 CALIBRATION_RELATIVEPATH = r'test_station\test_equipment\calibration'
 DATABASE_RELATIVEPATH = r'factory-test_logs\oculus.ttxm'
 EMPTY_DATABASE_RELATIVEPATH = r'factory-test_logs\empty.ttxm'
-ANALYSIS_RELATIVEPATH = r'factory-test_logs'
 DATABASE_RELATIVEPATH_BAK = r'factory-test_logs'
+ANALYSIS_RELATIVEPATH = r'factory-test_logs'
 
 FOCUS_DISTANCE = 0.425
 APERTURE = 8.0
@@ -117,6 +117,7 @@ TOP = 1272
 WIDTH = 3703
 HEIGHT = 4012
 IS_SAVEDB = True
+IS_SAVEASDB_PERTEST = False
 
 
 SPECTRAL_RESPONSE = 'PhotoMetric'

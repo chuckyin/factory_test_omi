@@ -22,7 +22,7 @@ class pancakeuniformityStation(test_station.TestStation):
     def __init__(self, station_config, operator_interface):
         test_station.TestStation.__init__(self, station_config, operator_interface)
         self._fixture = test_fixture_pancake_uniformity.pancakeuniformityFixture(station_config, operator_interface)
-        self._equipment = test_equipment_pancake_uniformity.pancakeuniformityEquipment(station_config, operator_interface)
+        # self._equipment = test_equipment_pancake_uniformity.pancakeuniformityEquipment(station_config, operator_interface)
         self._overall_errorcode = ''
         self._first_failed_test_result = None
 
@@ -41,8 +41,11 @@ class pancakeuniformityStation(test_station.TestStation):
         self._operator_interface.print_to_console("Close...\n")
         self._operator_interface.print_to_console("\n..shutting the station down..\n")
         self._fixture.status()
-        self._fixture.unload()
-        self._fixture.close()
+        try:
+            self._fixture.elminator_off()
+            self._fixture.unload()
+        finally:
+            self._fixture.close()
 
     def _do_test(self, serial_number, test_log):
         self._overall_result = False
@@ -50,6 +53,22 @@ class pancakeuniformityStation(test_station.TestStation):
 #        self._operator_interface.operator_input("Manually Loading", "Please Load %s for testing.\n" % serial_number)
         self._fixture.elminator_on()
         self._fixture.load()
+
+        if self._station_config.IS_SAVEASDB_PERTEST:
+            self._operator_interface.print_to_console("Empty ttxm raw database ...\n")
+            try:
+                ttxmpth = os.path.join(self._station_config.ROOT_DIR, self._station_config.DATABASE_RELATIVEPATH)
+                dirname = os.path.dirname(ttxmpth)
+                shutil.rmtree(dirname)
+                if not os.path.exists(dirname):
+                    os.mkdir(dirname, 777)
+
+                shutil.copyfile(
+                    os.path.join(self._station_config.ROOT_DIR, self._station_config.EMPTY_DATABASE_RELATIVEPATH),
+                    os.path.join(self._station_config.ROOT_DIR, self._station_config.DATABASE_RELATIVEPATH))
+            except Exception, e:
+                self._operator_interface.print_to_console("Fail to create new raw database.{}\n".format(e.message))
+
         try:
             self._operator_interface.print_to_console("Testing Unit %s\n" %serial_number)
             the_unit = dut.pancakeDut(serial_number, self._station_config, self._operator_interface)
@@ -209,17 +228,24 @@ class pancakeuniformityStation(test_station.TestStation):
             the_unit.close()
             self._fixture.unload()
             self._fixture.elminator_off()
+            the_equipment.uninit()
             overall_result, first_failed_test_result = self.close_test(test_log)
 
             # SN-YYMMDDHHMMS-P.ttxm for pass unit and  SN-YYMMDDHHMMS-F.ttxm for failed
-            dbfn = ""
-            if overall_result:
-                dbfn = "{0}-{1}-P.ttxm".format(the_unit.serial_number, datetime.datetime.now().strftime("%y%m%d%H%M%S"))
-            else:
-                dbfn = "{0}-{1}-F.ttxm".format(the_unit.serial_number, datetime.datetime.now().strftime("%y%m%d%H%M%S"))
+            if self._station_config.IS_SAVEASDB_PERTEST:
+                dbfn = ""
+                if overall_result:
+                    dbfn = "{0}-{1}-P.ttxm".format(serial_number, datetime.datetime.now().strftime("%y%m%d%H%M%S"))
+                else:
+                    dbfn = "{0}-{1}-F.ttxm".format(serial_number, datetime.datetime.now().strftime("%y%m%d%H%M%S"))
 
-            shutil.copy(os.path.join(self._station_config.ROOT_DIR, self._station_config.DATABASE_RELATIVEPATH),
-                        os.path.join(self._station_config.DATABASE_RELATIVEPATH_BAK, dbfn))
+                bak_dir = os.path.join(self._station_config.ROOT_DIR, self._station_config.DATABASE_RELATIVEPATH_BAK)
+                if not os.path.exists(bak_dir):
+                    os.mkdir(bak_dir, 777)
+
+                shutil.copyfile(os.path.join(self._station_config.ROOT_DIR, self._station_config.DATABASE_RELATIVEPATH),
+                                os.path.join(bak_dir, dbfn))
+
             return overall_result, first_failed_test_result
 
     def close_test(self, test_log):

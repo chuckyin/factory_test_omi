@@ -133,12 +133,12 @@ class displayCtrlBoard:
     def screen_on(self):
         if not self.is_screen_poweron:
             retryCount = 1
-            while retryCount < self._station_config.DUT_ON_MAXRETRY and not self.is_screen_poweron:
+            while retryCount <= self._station_config.DUT_ON_MAXRETRY and not self.is_screen_poweron:
                 recvobj = self._power_on()
                 if recvobj is None:
                     raise RuntimeError("Exit power_on because can't receive any data from dut.")
                 elif int(recvobj[0]) != 0x00:
-                    if retryCount > self._station_config.DUT_ON_MAXRETRY:
+                    if retryCount >= self._station_config.DUT_ON_MAXRETRY:
                         raise RuntimeError("Exit power_on because rev err msg. Msg = {}".format(recvobj))
                     else:
                         retryCount = retryCount + 1
